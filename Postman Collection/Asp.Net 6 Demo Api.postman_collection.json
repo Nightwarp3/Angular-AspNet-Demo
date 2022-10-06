@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "dddbbcec-9ccf-4cd5-963c-2ce62e35dec2",
+		"name": "Asp.Net 6 Demo Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2229996"
+	},
+	"item": [
+		{
+			"name": "Authorize",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var body = pm.response.text();\r",
+							"if (body && body.length > 0) {\r",
+							"    pm.collectionVariables.set(\"jwt_token\", pm.response.text());\r",
+							"} else {\r",
+							"    console.error(\"Missing response token\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localUrl}}Authenticate",
+					"host": [
+						"{{localUrl}}Authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localUrl}}User",
+					"host": [
+						"{{localUrl}}User"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localUrl",
+			"value": "https://localhost:7165/api/v1/"
+		},
+		{
+			"key": "jwt_token",
+			"value": ""
+		}
+	]
+}
