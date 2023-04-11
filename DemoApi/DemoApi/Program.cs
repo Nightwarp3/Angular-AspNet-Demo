@@ -27,21 +27,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             }
 
         };
-        options.Events = new JwtBearerEvents
-        {
-            OnMessageReceived = (context) =>
-            {
-                return Task.CompletedTask;
-            },
-            OnAuthenticationFailed = (context) =>
-            {
-                return Task.CompletedTask;
-            },
-            OnTokenValidated = (context) =>
-            {
-                return Task.CompletedTask;
-            }
-        };
     });
 
 // Add services to the container.

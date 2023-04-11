@@ -1,0 +1,37 @@
+.demo-app-container {
+    height: 100%;
+
+    .demo-app-drawer-content {
+        display: flex;
+        flex-direction: column;
+
+        .theme-menu {
+            ::ng-deep .mdc-button__label {
+                display: flex;
+                align-items: center;
+
+                .mat-icon {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+
+    .demo-app-outlet {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        
+        & > ::ng-deep .ng-star-inserted {
+            flex: 1;
+            margin: 16px;
+        }
+    }
+}
+
+::ng-deep .demo-app-theme-menu {
+    ::ng-deep .mdc-list-item__primary-text {
+        display: flex;
+        align-items: center;
+    }
+}
