@@ -1,5 +1,11 @@
-.home {
-    .surely-stronk {
-        width: 50px;
+:host {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .home {
+        max-width: fit-content;
+        margin-bottom: 1em;
     }
 }

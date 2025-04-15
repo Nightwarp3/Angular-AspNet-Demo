@@ -1,20 +1,18 @@
 @for (sample of samples; track sample) {
-<mat-card class="home">
-    <mat-card-title>
-        <h3>Welcome to my Demo App!</h3>
-    </mat-card-title>
-    <mat-card-content>
-        <p>My name is {{sample.name}}</p>
-        <img [src]="sample.image" class="surely-stronk" />
-    </mat-card-content>
+<mat-card class="home" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{sample.name}}</mat-card-title>
+        <mat-card-subtitle>{{sample.player}}</mat-card-subtitle>
+        <img mat-card-avatar [src]="sample.image" class="header-image" />
+    </mat-card-header>
     <mat-card-actions>
         @if (!authorized) {
-            <button mat-flat-button color="primary" (click)="authorizeUser()">
+            <button mat-flat-button type="button" (click)="authorizeUser()">
                 <mat-icon>lock</mat-icon>
                 Authorize
             </button>
         } @else {
-            <button mat-flat-button color="accent" (click)="logout()">
+            <button mat-stroked-button type="button" (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 Log Out
             </button>

@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { Theme, ThemeService } from './services/theme/theme.service';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
     standalone: true,
     imports: [
         CommonModule,
-        RouterModule,
+        RouterOutlet,
         MatButtonModule,
         MatSidenavModule,
         MatIconModule,
