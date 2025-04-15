@@ -20,16 +20,16 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 import { AuthorizationService } from './services/authorization/authorization.service';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomeComponent,
         PageNotFoundComponent
     ],
-    imports: [
-        CommonModule,
+    bootstrap: [
+        AppComponent
+    ], imports: [CommonModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -41,14 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
         MatMenuModule,
         MatSidenavModule,
         MatSelectModule,
-        MatToolbarModule,
-        HttpClientModule
-    ],
-    providers: [
-        AuthorizationService
-    ],
-    bootstrap: [
-        AppComponent
-    ]
-})
+        MatToolbarModule], providers: [
+        AuthorizationService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
