@@ -22,17 +22,17 @@ import { AuthorizationService } from './services/authorization/authorization.ser
 import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         HomeComponent,
         PageNotFoundComponent
     ],
     bootstrap: [
         AppComponent
-    ], imports: [CommonModule,
-        BrowserModule,
+    ], imports: [
+        CommonModule,
         AppRoutingModule,
-        BrowserAnimationsModule,
         MatButtonModule,
         MatCardModule,
         MatFormFieldModule,
@@ -41,8 +41,11 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
         MatMenuModule,
         MatSidenavModule,
         MatSelectModule,
-        MatToolbarModule], providers: [
+        MatToolbarModule
+    ],
+    providers: [
         AuthorizationService,
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ]
+})
 export class AppModule { }
