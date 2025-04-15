@@ -1,4 +1,5 @@
-<mat-card class="home" *ngFor="let sample of samples">
+@for (sample of samples; track sample) {
+<mat-card class="home">
     <mat-card-title>
         <h3>Welcome to my Demo App!</h3>
     </mat-card-title>
@@ -7,17 +8,17 @@
         <img [src]="sample.image" class="surely-stronk" />
     </mat-card-content>
     <mat-card-actions>
-        <ng-container *ngIf="!authorized; else authorizedTemplate">
+        @if (!authorized) {
             <button mat-flat-button color="primary" (click)="authorizeUser()">
                 <mat-icon>lock</mat-icon>
                 Authorize
             </button>
-        </ng-container>
-        <ng-template #authorizedTemplate>
+        } @else {
             <button mat-flat-button color="accent" (click)="logout()">
                 <mat-icon>logout</mat-icon>
                 Log Out
             </button>
-        </ng-template>
+        }
     </mat-card-actions>
 </mat-card>
+}

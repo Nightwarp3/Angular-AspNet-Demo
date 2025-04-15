@@ -1,10 +1,20 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { AuthorizationService } from 'src/app/services/authorization/authorization.service';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [
+        MatCardModule,
+        MatIconModule
+    ],
+    providers: [
+        AuthorizationService
+    ]
 })
 export class HomeComponent {
     public authorized: boolean = false;

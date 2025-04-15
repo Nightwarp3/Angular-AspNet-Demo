@@ -12,17 +12,17 @@
             <span class="spacer"></span>
             <!-- TODO: add sign up/login buttons + User info buttons -->
             <button mat-button class="theme-menu" [matMenuTriggerFor]="themeMenu">
-                <ng-container [ngSwitch]="currentTheme">
-                    <ng-container *ngSwitchCase="theme.dark">
+                @switch (currentTheme) {
+                    @case (theme.dark) {
                         <ng-content *ngTemplateOutlet="darkTheme"></ng-content>
-                    </ng-container>
-                    <ng-container *ngSwitchCase="theme.light">
+                    }
+                    @case (theme.light) {
                         <ng-content *ngTemplateOutlet="lightTheme"></ng-content>
-                    </ng-container>
-                    <ng-container *ngSwitchDefault>
+                    }
+                    @default {
                         <ng-content *ngTemplateOutlet="autoTheme"></ng-content>
-                    </ng-container>
-                </ng-container>
+                    }
+                }
             </button>
         </mat-toolbar>
         <span class="demo-app-outlet">
