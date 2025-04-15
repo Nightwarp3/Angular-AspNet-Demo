@@ -9,15 +9,10 @@ namespace DemoApi.Controllers
     /// </summary>
     [Authorize]
     [Route("api/v1/User")]
-    public class UserController : Controller
+    public class UserController (
+        ILogger<UserController> _logger
+    ) : Controller
     {
-        private readonly ILogger<UserController> _logger;
-
-        public UserController(ILogger<UserController> logger)
-        {
-            _logger = logger;
-        }
-
         /// <summary>
         /// Use this endpoint to verify the JWT token provided is valid, and retrieve the generated username (guid).
         /// </summary>

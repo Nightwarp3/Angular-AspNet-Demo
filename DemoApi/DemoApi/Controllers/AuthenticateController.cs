@@ -13,19 +13,11 @@ namespace DemoApi.Controllers
     /// Unprotected Controller to retrieve a valid bearer token to access other controllers
     /// </summary>
     [Route("api/v1/Authenticate")]
-    public class AuthenticateController : Controller
+    public class AuthenticateController(
+            ILogger<AuthenticateController> _logger,
+            IOptions<JwtOptions> _options
+        ) : Controller
     {
-        private readonly ILogger<AuthenticateController> _logger;
-        private readonly JwtOptions _options;
-
-        public AuthenticateController(
-            ILogger<AuthenticateController> logger,
-            IOptions<JwtOptions> options
-        )
-        {
-            _logger = logger;
-            _options = options.Value;
-        }
 
         [HttpGet, Route("")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
@@ -40,16 +32,16 @@ namespace DemoApi.Controllers
                 var createdDate = DateTime.UtcNow;
                 var claims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, _options.Subject),
+                    new Claim(JwtRegisteredClaimNames.Sub, _options.Value.Subject),
                     new Claim(JwtRegisteredClaimNames.Iat, createdDate.Subtract(DateTime.UnixEpoch).TotalSeconds.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Exp, createdDate.AddDays(_options.Lifetime).Subtract(DateTime.UnixEpoch).TotalSeconds.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Exp, createdDate.AddDays(_options.Value.Lifetime).Subtract(DateTime.UnixEpoch).TotalSeconds.ToString()),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(ClaimsIdentity.DefaultNameClaimType, Guid.NewGuid().ToString()),
                 };
 
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Key));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Value.Key));
                 var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(_options.Issuer, _options.Audience, claims, signingCredentials: credentials);
+                var token = new JwtSecurityToken(_options.Value.Issuer, _options.Value.Audience, claims, signingCredentials: credentials);
 
                 string result = new JwtSecurityTokenHandler().WriteToken(token);
 
