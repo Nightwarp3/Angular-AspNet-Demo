@@ -47,6 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     providers: [
         AuthorizationService
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [
+        AppComponent
+    ]
 })
 export class AppModule { }
